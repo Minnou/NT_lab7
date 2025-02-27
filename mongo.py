@@ -60,3 +60,57 @@ pipeline = [
 ]
 result = list(schedule.aggregate(pipeline))
 print(result[0]["Average_Price"] if result else "Нет данных")
+
+print("\n11. Количество фильмов в каждом кинотеатре:")
+pipeline = [
+    {
+        "$lookup": {
+            "from": "schedule",  
+            "localField": "Cinema_ID",
+            "foreignField": "Cinema_ID",
+            "as": "schedule_info"
+        }
+    },
+    {
+        "$project": {
+            "_id": 0,
+            "cinema_name": "$Name",
+            "film_count": {"$size": "$schedule_info"}  
+        }
+    }
+]
+
+for entry in db.cinema.aggregate(pipeline):
+    print(entry)
+
+print("\n12. Средняя цена билета в каждом кинотеатре:")
+pipeline = [
+    {
+        "$lookup": {
+            "from": "schedule",
+            "localField": "Cinema_ID",
+            "foreignField": "Cinema_ID",
+            "as": "schedule_info"
+        }
+    },
+    {
+        "$unwind": "$schedule_info"  
+    },
+    {
+        "$group": {
+            "_id": "$Name",
+            "avg_price": {"$avg": "$schedule_info.Price"}  
+        }
+    },
+    {
+        "$project": {
+            "_id": 0,
+            "cinema_name": "$_id",
+            "avg_price": 1
+        }
+    }
+]
+
+for entry in db.cinema.aggregate(pipeline):
+    print(entry)
+

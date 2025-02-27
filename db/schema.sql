@@ -94,44 +94,53 @@ CREATE TABLE bike_store_schema.stocks (
 COPY bike_store_schema.brands (brand_id, brand_name)
 FROM 'E:\PyPy\NT_lab7\db\brands.csv' 
 DELIMITER ',' 
+null as 'NULL' 
 CSV HEADER;
 
 COPY bike_store_schema.categories (category_id, category_name)
 FROM 'E:\PyPy\NT_lab7\db\categories.csv' 
 DELIMITER ',' 
+null as 'NULL' 
 CSV HEADER;
 
 COPY bike_store_schema.customers (customer_id, first_name, last_name, phone, email, street, city, state, zip_code)
 FROM 'E:\PyPy\NT_lab7\db\customers.csv' 
 DELIMITER ',' 
+null as 'NULL' 
 CSV HEADER;
 
 COPY bike_store_schema.stores (store_id, store_name, phone, email, street, city, state, zip_code)
 FROM 'E:\PyPy\NT_lab7\db\stores.csv' 
 DELIMITER ',' 
+null as 'NULL' 
 CSV HEADER;
 
 COPY bike_store_schema.products (product_id, product_name, brand_id, category_id, model_year, list_price)
 FROM 'E:\PyPy\NT_lab7\db\products.csv' 
 DELIMITER ',' 
+null as 'NULL' 
 CSV HEADER;
 
 COPY bike_store_schema.staffs (staff_id, first_name, last_name, email, phone, active, store_id, manager_id)
 FROM 'E:\PyPy\NT_lab7\db\staffs.csv' 
 DELIMITER ',' 
+null as 'NULL' 
 CSV HEADER;
 
 COPY bike_store_schema.orders (order_id, customer_id, order_status, order_date, required_date, shipped_date, store_id, staff_id)
 FROM 'E:\PyPy\NT_lab7\db\orders.csv' 
 DELIMITER ',' 
+null as 'NULL' 
 CSV HEADER;
 
 COPY bike_store_schema.order_items (order_id, item_id, product_id, quantity, list_price, discount)
 FROM 'E:\PyPy\NT_lab7\db\order_items.csv' 
 DELIMITER ',' 
+null as 'NULL' 
 CSV HEADER;
 
 COPY bike_store_schema.stocks (store_id, product_id, quantity)
 FROM 'E:\PyPy\NT_lab7\db\stocks.csv' 
 DELIMITER ',' 
+null as 'NULL' 
 CSV HEADER;
